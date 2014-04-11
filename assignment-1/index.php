@@ -1,6 +1,14 @@
-<!doctype html>
-<html>
 
-Hello World! 
+<?php
+  $page_title = 'Home';
+  include('header.php');
+  
+ ?>
 
-</html>
+<p>Hello World!</p> 
+
+<?php
+
+  include('footer.php');
+
+?>
