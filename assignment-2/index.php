@@ -30,8 +30,9 @@ $secondnumber = isset($_REQUEST["second_number"]);
 if (htmlentities($secondnumber == 17)){
  
  ?>
- Yahtzee!
- <?php } ?> </p>
-
+ Yahtzee!</p>
+ <?php}  ?>
+<a href="index.php">PLAY AGAIN</a>
+<?php } ?>
 </body>
 </html>
