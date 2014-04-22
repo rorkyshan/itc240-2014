@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html>
 <head>
 </head>
@@ -25,13 +25,18 @@ Mad Libs!</br></br>
      <?=  htmlentities($firstnumber); ?> is not that many enchiladas for breakfast! <?php 
  }elseif($firstnumber>5) {  ?>
      <?=  htmlentities($firstnumber);  ?> is a lot of enchiladas for breakfast! <?php }  ?>
-<?php };
-$secondnumber = isset($_REQUEST["second_number"]);
-if (htmlentities($secondnumber == 17)){
+<?php 
+$secondnumber=htmlentities($_REQUEST["second_number"]);
+//if(isset($_REQUEST['second_number'])){ $secondnumber = $_REQUEST['second_number']; }
+if($secondnumber == 17){
  
  ?>
  Yahtzee!
- <?php } ?> </p>
-
+ 
+  </p>
+ 
+  <?php } ?>
+  <a href="index.php"> PLAY AGAIN</a>
+<?php }?>
 </body>
 </html>
