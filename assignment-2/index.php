@@ -30,7 +30,7 @@ $secondnumber=htmlentities($_REQUEST["second_number"]);
 //if(isset($_REQUEST['second_number'])){ $secondnumber = $_REQUEST['second_number']; }
 if($secondnumber == 17){
  
- ?>
+ ?> 
  Yahtzee!
  
   </p>
