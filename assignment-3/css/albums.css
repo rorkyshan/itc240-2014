@@ -1,0 +1,20 @@
+
+	body{
+		font-family:arial;
+		
+	}
+
+	.albums{ 
+		width:185px;
+		display:inline-block;
+		border: 1px solid black;
+		padding:5px 5px 5px 15px;
+		margin: 0 20px 20px 0;
+		line-height: 26px;
+		
+	}
+	
+	img{
+		padding-top:10px;
+	}
+	
