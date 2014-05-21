@@ -7,6 +7,15 @@ $mysql = new mysqli("localhost", "pdodd001", $mysql_pass, "pdodd001");
 <!doctype html>
 <html>
  <head>
+ <style>
+	.container{
+		border:1px solid black;
+		margin-bottom:10px;
+		width:25%;
+		margin-top:10px;
+		padding:5px;
+	}
+ </style>
  </head>
  <body>
    <h3>ENTER EXPENSES:</h3>
@@ -29,9 +38,10 @@ $mysql = new mysqli("localhost", "pdodd001", $mysql_pass, "pdodd001");
  	
  	if($_SERVER["REQUEST_METHOD"] == "GET"){
 		
-		$select = 'SELECT total_cost, place_purch, YEAR(purch_dt) AS year, MONTH(purch_dt) AS month, DAY(purch_dt) AS day, details FROM expenses WHERE MONTH(purch_dt) AS month = ?;';
-		
+		$select = 'SELECT total_cost, place_purch, YEAR(purch_dt) AS year, MONTH(purch_dt) AS month, DAY(purch_dt) AS day, details FROM expenses WHERE MONTH(purch_dt) = ?;';
+	
 		$prepared = $mysql->prepare($select);
+		$prepared->bind_param("i", $_REQUEST["month"]);
 		$prepared->execute();
 		
 	$receipts = $prepared->get_result();
