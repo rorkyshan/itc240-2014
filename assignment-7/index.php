@@ -60,7 +60,7 @@ $results=$prepared->get_result();
 
 	
 
-if($sortList == "" || $sortList == "default-val" || $sortList = "cover-view"){
+if($sortList == "" || $sortList == "default-val" || $sortList == "cover-view"){
 foreach ($results as $rows) {
 ?>
   <div class="book-wrapper">
@@ -82,13 +82,12 @@ foreach ($results as $rows) {
   	<div class="inner-wrapper">
 	<div><img src="<?= htmlentities($rows["cover"]) ?>" alt="img"></div>
 	<div><?= htmlentities($rows["title"]) ?></div>
-	<div><?= htmlentities($rows["author"]) ?></div>
-	<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-	 Nunc faucibus tincidunt nibh, porttitor commodo mi adipiscing eget.
-	 In eleifend porta ante non faucibus. </div>
+	<div><?= htmlentities($rows["author"]) ?></div></br>
+	<div><strong>Description: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	 Nunc faucibus tincidunt nibh, porttitor commodo. </div>
 	<button>checkout</button>
   </div>
- </div>
+ </div> 
   <?php
   }
 }
