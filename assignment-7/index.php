@@ -40,27 +40,50 @@ $mysql = new mysqli("localhost","pdodd001",$mysql_pass,"pdodd001");
 </head>
 <body>
 <form method="GET" action="index.php">
-	<label>Select View: <select name="sort-list">
+	<label>Select View: <select name="sort-view">
 		<option value="default-val">--select an option below--</option>
 		<option value="cover-view">Cover View</option>
 		<option value="list-view">List View</option>
 	</select></label>
+
+	<label>Sort by: <select name="sort-list">
+		<option value="default-sort">--select an option below--</option>
+		<option value="title-sort">by title</option>
+		<option value="author-sort">by author</option>
+	</select></label>
+
 	<button type="submit">submit changes</button>
 </form>	
 
 <?php
+$sortView = "";
+if(isset($_REQUEST["sort-view"])){$sortView = $_REQUEST["sort-view"]; }
+
 $sortList = "";
 if(isset($_REQUEST["sort-list"])){$sortList = $_REQUEST["sort-list"]; }
 
-$query='SELECT cover, title, author FROM books;';
-$prepared=$mysql->prepare($query);
-$prepared->execute();
+if($sortList == "" || $sortList == "default-sort"){
+	$query='SELECT cover, title, author FROM books;';
+	$prepared=$mysql->prepare($query);
+	$prepared->execute();
 
-$results=$prepared->get_result();
+	$results=$prepared->get_result();
+}elseif($sortList == "author-sort"){
+	$query='SELECT cover, title, author FROM books ORDER BY author ASC;';
+	$prepared=$mysql->prepare($query);
+	$prepared->execute();
 
+	$results=$prepared->get_result();
+}else{
+	$query='SELECT cover, title, author FROM books ORDER BY title ASC;';
+	$prepared=$mysql->prepare($query);
+	$prepared->execute();
+
+	$results=$prepared->get_result();
+}
 	
 
-if($sortList == "" || $sortList == "default-val" || $sortList == "cover-view"){
+if($sortView == "" || $sortView == "default-val" || $sortView == "cover-view"){
 foreach ($results as $rows) {
 ?>
   <div class="book-wrapper">
