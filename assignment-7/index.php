@@ -41,10 +41,24 @@ $mysql = new mysqli("localhost","pdodd001",$mysql_pass,"pdodd001");
 
 
 $sortView = "";
-if(isset($_REQUEST["sort-view"])){$sortView = $_REQUEST["sort-view"]; }
+
+if(isset($_COOKIE["sort-view"])){
+	$sortView = $_COOKIE["sort-view"];
+}
+if(isset($_REQUEST["sort-view"])){
+	$sortView = $_REQUEST["sort-view"];
+	setcookie("view",$sortView,time()+60*60*24*30,"/");
+}
 
 $sortList = "";
-if(isset($_REQUEST["sort-list"])){$sortList = $_REQUEST["sort-list"]; }
+if(isset($_COOKIE["sort-list"])){
+	$sortList = $_COOKIE["sort-list"];
+	
+}
+if(isset($_REQUEST["sort-list"])){
+	$sortList = $_REQUEST["sort-list"];
+	setcookie("list",$sortList,time()+60*60*24*30,"/");
+}
 
 if($sortList == "" || $sortList == "default-sort"){
 	$query='SELECT cover, title, author FROM books;';
@@ -102,7 +116,13 @@ foreach ($results as $rows) {
 ?>
 <?php
 $styleSheet = "";
-if(isset($_REQUEST["styles"])){$styleSheet = $_REQUEST["styles"]; }
+if(isset($_COOKIE["styles"])){
+	$styleSheet = $_COOKIE["styles"];
+}
+if(isset($_REQUEST["styles"])){
+	$styleSheet = $_REQUEST["styles"];
+	setcookie("styles",$styleSheet,time()+60*60*24*30,"/"); 
+}
 
 if($styleSheet == "" || $styleSheet == "white"){
 ?>
