@@ -12,33 +12,6 @@ $mysql = new mysqli("localhost","pdodd001",$mysql_pass,"pdodd001");
 	<meta charset="utf-8" />
 	<title>Patrick Dodd - Assignment-7</title>
 	
-	<style>
-		
-		.book-wrapper{
-			display:inline-block;
-			margin:10px;
-			padding:10px;
-			border:1px solid rgb(200,200,200);
-			width: 225px;
-			font-family: arial;
-			font-size: 0.85em;
-		}
-
-		.inner-wrapper{
-			margin:0 auto;
-			padding-left: 15%;
-		}
-
-		label{
-			margin-right:10px;
-			font-family: arial;
-			font-size: 0.8em;
-		}	
-
-		button{
-			margin-top:10px;
-		}
-	</style>
 </head>
 <body>
 <form method="GET" action="index.php">
