@@ -48,6 +48,16 @@ if(isset($_REQUEST["sort-list"])){
 	setcookie("list",$sortList,time()+60*60*24*30,"/");
 }
 
+$sortWhitelist = [
+	"default-sort" => true,
+	"author-sort" => true,
+	"title-sort" => true
+];
+
+if(!isset($sortWhitelist[$sortList])){
+	$sortList = "";
+}
+
 if($sortList == "" || $sortList == "default-sort"){
 	$query='SELECT cover, title, author FROM books;';
 	$prepared=$mysql->prepare($query);
@@ -79,6 +89,16 @@ if(isset($_REQUEST["sort-view"])){
 	$sortView = $_REQUEST["sort-view"];
 	setcookie("view",$sortView,time()+60*60*24*30,"/");
 }	
+
+$viewWhitelist = [
+	"default-val" => true,
+	"cover-view" => true,
+	"list-view" => true
+];
+
+if(!isset($viewWhitelist[$sortView])){
+	$sortView = "";
+}
 
 if($sortView == "" || $sortView == "default-val" || $sortView == "cover-view"){
 foreach ($results as $rows) {
@@ -124,6 +144,15 @@ if(isset($_COOKIE["styles"])){
 if(isset($_REQUEST["styles"])){
 	$styleSheet = $_REQUEST["styles"];
 	setcookie("styles",$styleSheet,time()+60*60*24*30,"/"); 
+}
+
+$styleWhitelist = [
+	"white" => true,
+	"grey" => true
+];
+
+if(!isset($styleWhitelist[$styleSheet])){
+	$styleSheet = "";
 }
 
 if($styleSheet == "" || $styleSheet == "white"){
