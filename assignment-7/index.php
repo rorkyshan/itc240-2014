@@ -32,27 +32,15 @@ $mysql = new mysqli("localhost","pdodd001",$mysql_pass,"pdodd001");
 		<option value="grey">grey</option>
 	</select></label>
 
-
-
 	<button type="submit">submit changes</button>
 </form>	
 
 <?php
 
-
-$sortView = "";
-
-if(isset($_COOKIE["sort-view"])){
-	$sortView = $_COOKIE["sort-view"];
-}
-if(isset($_REQUEST["sort-view"])){
-	$sortView = $_REQUEST["sort-view"];
-	setcookie("view",$sortView,time()+60*60*24*30,"/");
-}
-
+//LIST OPTIONS (AUTHOR, TITLE)
 $sortList = "";
-if(isset($_COOKIE["sort-list"])){
-	$sortList = $_COOKIE["sort-list"];
+if(isset($_COOKIE["list"])){
+	$sortList = $_COOKIE["list"];
 	
 }
 if(isset($_REQUEST["sort-list"])){
@@ -79,7 +67,18 @@ if($sortList == "" || $sortList == "default-sort"){
 
 	$results=$prepared->get_result();
 }
-	
+
+//VIEW OPTIONS(LIST OR COVER)
+$sortView = "";
+
+if(isset($_COOKIE["view"])){
+	$sortView = $_COOKIE["view"];
+}
+
+if(isset($_REQUEST["sort-view"])){
+	$sortView = $_REQUEST["sort-view"];
+	setcookie("view",$sortView,time()+60*60*24*30,"/");
+}	
 
 if($sortView == "" || $sortView == "default-val" || $sortView == "cover-view"){
 foreach ($results as $rows) {
@@ -96,7 +95,7 @@ foreach ($results as $rows) {
 <?php
 	}
 }
-  else{
+  elseif($sortView == "list-view") {
   	foreach ($results as $rows) {
 ?>
   <div class="book-wrapper">
@@ -115,10 +114,13 @@ foreach ($results as $rows) {
  
 ?>
 <?php
+//STYLE OPTIONS (CHANGE BACKGROUND COLOR)
 $styleSheet = "";
+
 if(isset($_COOKIE["styles"])){
 	$styleSheet = $_COOKIE["styles"];
 }
+
 if(isset($_REQUEST["styles"])){
 	$styleSheet = $_REQUEST["styles"];
 	setcookie("styles",$styleSheet,time()+60*60*24*30,"/"); 
