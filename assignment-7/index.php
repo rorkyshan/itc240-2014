@@ -1,6 +1,7 @@
 <?php
 include('passwords.php');
 $mysql = new mysqli("localhost","pdodd001",$mysql_pass,"pdodd001");
+
 ?>
 
 
@@ -10,6 +11,7 @@ $mysql = new mysqli("localhost","pdodd001",$mysql_pass,"pdodd001");
 	<meta name="robots" content="noindex,nofollow" />
 	<meta charset="utf-8" />
 	<title>Patrick Dodd - Assignment-7</title>
+	
 	<style>
 		
 		.book-wrapper{
@@ -52,10 +54,19 @@ $mysql = new mysqli("localhost","pdodd001",$mysql_pass,"pdodd001");
 		<option value="author-sort">by author</option>
 	</select></label>
 
+	<label>Select Style: <select name="styles">
+		<option value="white">white</option>
+		<option value="grey">grey</option>
+	</select></label>
+
+
+
 	<button type="submit">submit changes</button>
 </form>	
 
 <?php
+
+
 $sortView = "";
 if(isset($_REQUEST["sort-view"])){$sortView = $_REQUEST["sort-view"]; }
 
@@ -116,7 +127,22 @@ foreach ($results as $rows) {
 }
  
 ?>
+<?php
+$styleSheet = "";
+if(isset($_REQUEST["styles"])){$styleSheet = $_REQUEST["styles"]; }
 
+if($styleSheet == "" || $styleSheet == "white"){
+?>
+
+<link rel="stylesheet" type="text/css" href="css/light.css">
+<?php
+}elseif ($styleSheet == "grey"){
+	?>
+<link rel="stylesheet" type="text/css" href="css/dark.css">
+<?php
+}
+
+?>
 </body>
 
 </html>
